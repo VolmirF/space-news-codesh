@@ -1,0 +1,39 @@
+{
+  "name": "space-news-codesh",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/VolmirF/space-news-codesh.git",
+  "author": "Volmir Fiorini Júnior <volmir1999@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn run clean && babel src -d dist",
+    "clean": "rimraf dist",
+    "dev": "nodemon --exec babel-node src/server.js",
+    "dev-populateDb": "nodemon --exec babel-node src/scripts/populateDb.js",
+    "populateDb": "yarn run clean && yarn run build && cd dist && cd scripts && node populateDb.js",
+    "start": "yarn run clean && yarn run build && cd dist && node server.js",
+    "docker-build": "docker build . -t space-news-codesh",
+    "docker-run": "docker run -p 3000:3000 -d space-news-codesh"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "axios": "^0.26.0",
+    "babel-plugin-inline-dotenv": "^1.6.0",
+    "body-parser": "^1.19.2",
+    "core-js": "^3.21.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "moment": "^2.29.1",
+    "mongoose": "^6.2.3",
+    "node-cron": "^3.0.0",
+    "nodemon": "^2.0.15",
+    "regenerator-runtime": "^0.13.9"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.5",
+    "@babel/node": "^7.16.8",
+    "rimraf": "^3.0.2"
+  }
+}
