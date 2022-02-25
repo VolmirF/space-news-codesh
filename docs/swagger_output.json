@@ -1,0 +1,348 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Space News Codesh API",
+    "description": "Documentation of Space News Codesh API."
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Articles"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/articles/count": {
+      "get": {
+        "tags": [
+          "Articles"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/articles": {
+      "get": {
+        "tags": [
+          "Articles"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "Number of documents per page.",
+            "type": "number"
+          },
+          {
+            "name": "page_num",
+            "in": "query",
+            "description": "Number of current page.",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Article list.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Article"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Articles"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "newArticle",
+            "in": "body",
+            "description": "Article that will be created. Can be an array, creating    multiple records at once ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewArticle"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Article"
+            },
+            "description": "Article created."
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/articles/{articleId}": {
+      "get": {
+        "tags": [
+          "Articles"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "articleId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Article id."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Article found.",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Articles"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "articleId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Article id."
+          },
+          {
+            "name": "updatedArticle",
+            "in": "body",
+            "description": "Article that will be updated.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewArticle"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Article updated.",
+            "schema": {
+              "$ref": "#/definitions/NewArticle"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Articles"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "articleId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Article id."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Article": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "6217951e81f99f25077865fe"
+        },
+        "title": {
+          "type": "string",
+          "example": "SpaceX Falcon 9 rockets scheduled to launch five Starlink missions in a row"
+        },
+        "url": {
+          "type": "string",
+          "example": "https://www.teslarati.com/spacex-falcon-9-five-starlink-launches-in-a-row/"
+        },
+        "imageUrl": {
+          "type": "string",
+          "example": "https://www.teslarati.com/wp-content/uploads/2020/06/Starlink-V1-L8-Falcon-9-B1059-LC40-061220-Richard-Angle-prelaunch-4-c.jpg"
+        },
+        "newsSite": {
+          "type": "string",
+          "example": "Teslarati"
+        },
+        "summary": {
+          "type": "string",
+          "example": "In lieu of commercial missions ready to fly, SpaceX Falcon 9 rockets are currently scheduled to launch at least five batches of..."
+        },
+        "publishedAt": {
+          "type": "string",
+          "example": "2022-02-24T12:09:56.000Z"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2022-02-24T15:15:50.408Z"
+        },
+        "featured": {
+          "type": "boolean",
+          "example": false
+        },
+        "launches": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "b7b24770-f9dd-40eb-adad-da95e917e55d"
+              },
+              "provider": {
+                "type": "string",
+                "example": "Launch Library 2"
+              }
+            }
+          }
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "861795c5-e694-4d3e-b22f-a356a31cd5d8"
+              },
+              "provider": {
+                "type": "string",
+                "example": "Event Library 2"
+              }
+            }
+          }
+        }
+      }
+    },
+    "NewArticle": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "SpaceX Falcon 9 rockets scheduled to launch five Starlink missions in a row"
+        },
+        "url": {
+          "type": "string",
+          "example": "https://www.teslarati.com/spacex-falcon-9-five-starlink-launches-in-a-row/"
+        },
+        "imageUrl": {
+          "type": "string",
+          "example": "https://www.teslarati.com/wp-content/uploads/2020/06/Starlink-V1-L8-Falcon-9-B1059-LC40-061220-Richard-Angle-prelaunch-4-c.jpg"
+        },
+        "newsSite": {
+          "type": "string",
+          "example": "Teslarati"
+        },
+        "summary": {
+          "type": "string",
+          "example": "In lieu of commercial missions ready to fly, SpaceX Falcon 9 rockets are currently scheduled to launch at least five batches of..."
+        },
+        "featured": {
+          "type": "boolean",
+          "example": false
+        },
+        "launches": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "provider": {
+                "type": "string",
+                "example": "Launch Library 2"
+              }
+            }
+          }
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "provider": {
+                "type": "string",
+                "example": "Event Library 2"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "title",
+        "url",
+        "imageUrl",
+        "newsSite",
+        "featured"
+      ]
+    }
+  }
+}

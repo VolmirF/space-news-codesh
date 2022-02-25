@@ -15,6 +15,7 @@ export default {
         req.query.page_size,
         req.query.page_num
       );
+
       res.send(articles);
     } catch (error) {
       res.status(400).send('Error loading articles');

@@ -6,14 +6,15 @@
   "author": "Volmir Fiorini Júnior <volmir1999@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn run clean && babel src -d dist",
+    "build": "yarn clean && babel src -d dist",
     "clean": "rimraf dist",
-    "dev": "nodemon --exec babel-node src/server.js",
+    "dev": "yarn swagger-autogen && nodemon --watch src --exec babel-node src/server.js",
     "dev-populateDb": "nodemon --exec babel-node src/scripts/populateDb.js",
-    "populateDb": "yarn run clean && yarn run build && cd dist && cd scripts && node populateDb.js",
-    "start": "yarn run clean && yarn run build && cd dist && node server.js",
     "docker-build": "docker build . -t space-news-codesh",
-    "docker-run": "docker run -p 3000:3000 -d space-news-codesh"
+    "docker-run": "docker -p 3000:3000 -d space-news-codesh",
+    "populateDb": "yarn clean && yarn build && cd dist && cd scripts && node populateDb.js",
+    "start": "yarn swagger-autogen && yarn clean && yarn build && cd dist && node server.js",
+    "swagger-autogen": "node src/swagger.js"
   },
   "dependencies": {
     "@babel/preset-env": "^7.16.11",
@@ -28,7 +29,9 @@
     "mongoose": "^6.2.3",
     "node-cron": "^3.0.0",
     "nodemon": "^2.0.15",
-    "regenerator-runtime": "^0.13.9"
+    "regenerator-runtime": "^0.13.9",
+    "swagger-autogen": "^2.19.0",
+    "swagger-ui-express": "^4.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
