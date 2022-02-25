@@ -14,7 +14,8 @@
     "docker-run": "docker -p 3000:3000 -d space-news-codesh",
     "populateDb": "yarn clean && yarn build && cd dist && cd scripts && node populateDb.js",
     "start": "yarn swagger-autogen && yarn clean && yarn build && cd dist && node server.js",
-    "swagger-autogen": "node src/swagger.js"
+    "swagger-autogen": "node src/swagger.js",
+    "test": "jest"
   },
   "dependencies": {
     "@babel/preset-env": "^7.16.11",
@@ -37,6 +38,9 @@
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.5",
     "@babel/node": "^7.16.8",
-    "rimraf": "^3.0.2"
+    "babel-jest": "^27.5.1",
+    "jest": "^27.5.1",
+    "rimraf": "^3.0.2",
+    "supertest": "^6.2.2"
   }
 }

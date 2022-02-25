@@ -29,7 +29,6 @@ export default {
       }
       res.send(article);
     } catch (error) {
-      console.log('error: ', error);
       res.status(400).send('Error loading article');
     }
   },
@@ -38,8 +37,6 @@ export default {
       const article = await ArticleService.createArticle(req.body);
       res.status(201).send(article);
     } catch (error) {
-      console.log('error: ', error);
-
       res.status(400).send('Error creating new article');
     }
   },

@@ -8,6 +8,8 @@ This is a challenge by [Coodesh](https://coodesh.com/)
 
 - Node
 - MongoDb
+- Swagger
+- Jest
 
 # Installation
 
@@ -24,3 +26,7 @@ Download and install all the dependencies of the project.
 ## - yarn start
 
 Will build and start the application.
+
+## - yarn test
+
+Will run the tests.

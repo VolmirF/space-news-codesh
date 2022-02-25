@@ -9,7 +9,7 @@ export default {
     const articlesCount = await Article.count();
     return articlesCount;
   },
-  getArticles: async (pageSize, pageNumber) => {
+  getArticles: async (pageSize = 100, pageNumber) => {
     const articles = await Article.find()
       .skip(pageNumber > 0 ? (pageNumber - 1) * pageSize : 0)
       .limit(pageSize)

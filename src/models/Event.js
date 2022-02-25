@@ -1,4 +1,4 @@
-const mongoose = require('../database');
+import mongoose from '../database';
 
 const EventSchema = new mongoose.Schema({
   provider: {

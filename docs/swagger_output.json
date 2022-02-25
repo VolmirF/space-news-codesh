@@ -94,14 +94,11 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
+            "description": "Article created.",
             "schema": {
               "$ref": "#/definitions/Article"
-            },
-            "description": "Article created."
-          },
-          "201": {
-            "description": "Created"
+            }
           },
           "400": {
             "description": "Bad Request"

@@ -1,4 +1,4 @@
-const mongoose = require('../database');
+import mongoose from '../database';
 
 const LaunchSchema = new mongoose.Schema({
   provider: {

@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from '../database';
 
 const ArticleSchema = new mongoose.Schema(
   {

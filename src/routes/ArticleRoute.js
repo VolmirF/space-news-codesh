@@ -58,7 +58,7 @@ routes.post(
       required: true,
       schema: { $ref: "#/definitions/NewArticle" }
     }
-    #swagger.responses[200] = { 
+    #swagger.responses[201] = { 
       schema: { $ref: "#/definitions/Article" },
       description: 'Article created.'
     }
